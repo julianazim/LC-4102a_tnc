@@ -1,0 +1,5 @@
+DRC Rules Export File for PCB: C:\Users\artur\Desktop\LC-4102a_tnc\design\electrical\pcb.PCBDOC
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=11.81
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=9.84
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
