@@ -41,7 +41,7 @@
 #include "functions/uplink.h"
 
 /* Globals */
-uint8_t cltuBuffer[CLTU_BUFFER_SIZE]; /* buffers a CLTU from the PC for sending */
+__xdata uint8_t cltuBuffer[CLTU_BUFFER_SIZE]; /* buffers a CLTU from the PC for sending */
 uint8_t cltuReceived = CLEAR; /* flags if CLTU was received form computer */
 uint8_t idleSequence = CLEAR; /* flags if idle sequence shall be transmitted */
 uint8_t transmitterMode = OFF; /* flags if transmitter shall be on */
@@ -62,7 +62,7 @@ void main(void)
         ; /* show all LEDs at startup */
     LED_TX = OFF;
     LED_RX = OFF;
-    
+
     for (;;)
     {       
         if (transmitterMode == ON)

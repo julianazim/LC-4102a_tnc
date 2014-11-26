@@ -23,7 +23,7 @@ typedef unsigned long int uint32_t;
 #define SET                 1
 
 /* Configuration */
-#define CLTU_BUFFER_SIZE 	210	
+#define CLTU_BUFFER_SIZE 	12//0	
 /* In bytes, defines maximum size of CLTU that can be buffered
  * Careful: if chosen too large, firmware will not run (although no
  * error is shown in compilation)!!

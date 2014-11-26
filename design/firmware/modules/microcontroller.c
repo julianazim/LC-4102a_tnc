@@ -13,7 +13,7 @@ void Reset_Sources_Init()
         ;    // Wait 100us for initialization
 }
 
-void PCA_Init()
+void PCA_Init() /* disable watch dog */
 {
     PCA0MD &= ~0x40;
     PCA0MD = 0x00;
@@ -93,7 +93,7 @@ void Interrupts_Init()
 
 void MicrocontrollerInit(void)
 {
-    PCA_Init();
+    //PCA_Init();
     Reset_Sources_Init();
     Timer_Init();
     UART_Init();					// 115200 bps
@@ -104,7 +104,7 @@ void MicrocontrollerInit(void)
     Interrupts_Init();
 }
 
-void TimerWait(unsigned short duration)
+void TimerWait(const uint16_t duration)
 {
     uint16_t i;
     
@@ -112,7 +112,7 @@ void TimerWait(unsigned short duration)
     TH0 = 0;
     do
     {
-        i = (unsigned short) (TH0 << 8) + TL0;
+        i = (uint16_t) (TH0 << 8) + TL0;
     }
     while (i < duration);
 }
