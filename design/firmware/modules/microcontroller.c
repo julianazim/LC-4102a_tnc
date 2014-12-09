@@ -93,7 +93,7 @@ void Interrupts_Init()
 
 void MicrocontrollerInit(void)
 {
-    //PCA_Init();
+    PCA_Init();
     Reset_Sources_Init();
     Timer_Init();
     UART_Init();					// 115200 bps
