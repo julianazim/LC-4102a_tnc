@@ -63,6 +63,71 @@ void main(void)
     LED_TX = OFF;
     LED_RX = OFF;
 
+    
+    
+    transmitterMode = ON;
+    _PTT = PTT_ON;
+    LED_TX = ON;    
+    
+    
+    for (i=0; i<16;i++) // 128 bits 16 octets of aqui seq
+    {
+        cltuBuffer[i] = 0x55;
+    }
+    
+//    SendCltu(cltuBuffer, i);  // PLOP-2
+//    i = 0;
+    
+    // start seq
+    cltuBuffer[i++] = 0xeb;
+    cltuBuffer[i++] = 0x90;
+
+    // data
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_';  
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_';  
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_';  
+    cltuBuffer[i++] = '_';
+    cltuBuffer[i++] = '_'; 
+    cltuBuffer[i++] = '*';
+    cltuBuffer[i++] = '*';    
+
+    // tail seq
+    cltuBuffer[i++] = 0xc5;
+    cltuBuffer[i++] = 0xc5;   
+    cltuBuffer[i++] = 0xc5;
+    cltuBuffer[i++] = 0xc5;
+    cltuBuffer[i++] = 0xc5;   
+    cltuBuffer[i++] = 0xc5;
+    cltuBuffer[i++] = 0xc5;
+    cltuBuffer[i++] = 0x79;
+    
+    // idle bits, min 8
+//    cltuBuffer[i++] = 0x55; // PLOP-2   
+    
+    for(;;)
+    {
+        SendCltu(cltuBuffer, i);    
+    }
+    
     for (;;)
     {       
         if (transmitterMode == ON)
