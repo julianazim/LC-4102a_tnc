@@ -46,7 +46,7 @@ uint8_t DetectCaduAsm(void)
 }
 
 /* ReceiveCadu:
- * Receive a CADU from radio and send octetwise to PC over UART KISS protocol
+ * Receive a CADU from radio and send byte-wise to PC over UART using KISS protocol
  */
 void ReceiveCadu(const uint16_t caduLength)
 {

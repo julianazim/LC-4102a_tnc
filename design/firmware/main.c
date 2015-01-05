@@ -56,78 +56,13 @@ void main(void)
     LED_POWER = ON; /* Power LED on */
     _PTT = PTT_OFF; /* Transmitter (via Push-to-talk) off */
     
+	/* Show all LEDs at power-up */
     LED_TX = ON;
     LED_RX = ON;
-    for (i = 0; i < 1000000UL; i++)
-        ; /* show all LEDs at startup */
+    for (i = 0; i < 1000000UL; i++); 
     LED_TX = OFF;
     LED_RX = OFF;
 
-    
-    
-    transmitterMode = ON;
-    _PTT = PTT_ON;
-    LED_TX = ON;    
-    
-    
-    for (i=0; i<16;i++) // 128 bits 16 octets of aqui seq
-    {
-        cltuBuffer[i] = 0x55;
-    }
-    
-//    SendCltu(cltuBuffer, i);  // PLOP-2
-//    i = 0;
-    
-    // start seq
-    cltuBuffer[i++] = 0xeb;
-    cltuBuffer[i++] = 0x90;
-
-    // data
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_';  
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_';  
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_';  
-    cltuBuffer[i++] = '_';
-    cltuBuffer[i++] = '_'; 
-    cltuBuffer[i++] = '*';
-    cltuBuffer[i++] = '*';    
-
-    // tail seq
-    cltuBuffer[i++] = 0xc5;
-    cltuBuffer[i++] = 0xc5;   
-    cltuBuffer[i++] = 0xc5;
-    cltuBuffer[i++] = 0xc5;
-    cltuBuffer[i++] = 0xc5;   
-    cltuBuffer[i++] = 0xc5;
-    cltuBuffer[i++] = 0xc5;
-    cltuBuffer[i++] = 0x79;
-    
-    // idle bits, min 8
-//    cltuBuffer[i++] = 0x55; // PLOP-2   
-    
-    for(;;)
-    {
-        SendCltu(cltuBuffer, i);    
-    }
-    
     for (;;)
     {       
         if (transmitterMode == ON)
@@ -207,7 +142,7 @@ void UartIsr(void) __interrupt 4
                     caduLength = uartBuffer + ((uint16_t) SBUF0 << 8);
                     break;
                     
-                case TRANSMITTER: /* set transmitter state */
+                case TRANSMITTER_STATE: /* set transmitter state */
                     
                     RI0 = 0;
                     while (!RI0)
@@ -246,7 +181,7 @@ void UartIsr(void) __interrupt 4
                     
                     break;
                     
-                case UPLINK_STREAM: /* buffer data from computer (to be uplinked) */
+                case UPLINK_STREAM: /* buffer data (CLTU) from computer (to be uplinked) */
                     for (;;)
                     {
                         RI0 = 0;
