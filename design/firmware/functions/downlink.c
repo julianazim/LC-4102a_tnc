@@ -63,7 +63,7 @@ void ReceiveCadu(const uint16_t caduLength)
         ;
     
     TI0 = 0;
-    SBUF0 = DOWNLINK_STREAM;
+    SBUF0 = DOWNLINK_CADU;
     while (!TI0)
         ;
      

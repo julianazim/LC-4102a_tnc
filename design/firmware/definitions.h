@@ -46,11 +46,11 @@ typedef unsigned long int uint32_t;
 #define FESC			    0xDB
 #define TFEND			    0xDC
 #define TFESC			    0xDD
-#define UPLINK_STREAM		0x00
-#define DOWNLINK_STREAM		0x02
+#define UPLINK_CLTU			0x01
+#define DOWNLINK_CADU		0x02
 #define HANDSHAKE			0x0A
 #define TEST_CONNECTION		0x0B
-#define TRANSMITTER 		0x0C
+#define TX_STATE			0x0C
 #define IDLE_SEQUENCE		0x0D
 #define CADU_LENGTH			0x0E
 

@@ -142,7 +142,7 @@ void UartIsr(void) __interrupt 4
                     caduLength = uartBuffer + ((uint16_t) SBUF0 << 8);
                     break;
                     
-                case TRANSMITTER_STATE: /* set transmitter state */
+                case TX_STATE: /* set transmitter state */
                     
                     RI0 = 0;
                     while (!RI0)
@@ -181,7 +181,7 @@ void UartIsr(void) __interrupt 4
                     
                     break;
                     
-                case UPLINK_STREAM: /* buffer data (CLTU) from computer (to be uplinked) */
+                case UPLINK_CLTU: /* buffer data (CLTU) from computer (to be uplinked) */
                     for (;;)
                     {
                         RI0 = 0;
