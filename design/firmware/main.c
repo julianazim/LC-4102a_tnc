@@ -61,8 +61,8 @@ void main(void)
     LED_RX = ON;
     for (i = 0; i < 1000000UL; i++); 
     LED_TX = OFF;
-    LED_RX = OFF;
-
+    LED_RX = OFF;   
+    
     for (;;)
     {       
         if (transmitterMode == ON)
@@ -99,7 +99,7 @@ void UartIsr(void) __interrupt 4
         if (uartBuffer == FEND) /* FENDs mark the begin and end of a frame */
         {
             cltuReceived = CLEAR; /* reset all counters */
-            octetCount = CLEAR;
+            octetCount = 0;
             RI0 = 0;
         }
         else /* this byte contains the CMD */
